@@ -41,7 +41,11 @@ RTree <- function(x) {
 #'
 #' @export
 withinDistance <- function(rTree, y, distance) {
-  UseMethod("withinDistance", rTree)
+  if(any(class(rTree) == "RTree")){
+    withinDistance.RTree(rTree, y, distance)
+  } else {
+    UseMethod("withinDistance", rTree)
+  }
 }
 
 withinDistance.RTree <- function(rTree, y, distance) {
@@ -81,7 +85,11 @@ withinDistance.RTree <- function(rTree, y, distance) {
 #'
 #' @export
 knn <- function(rTree, y, k) {
-  UseMethod("knn", rTree)
+  if(any(class(rTree) == "RTree")){
+    knn.RTree(rTree, y, k)
+  } else {
+    UseMethod("knn", rTree)
+  }
 }
 
 knn.RTree <- function(rTree, y, k) {
